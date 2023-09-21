@@ -41,3 +41,17 @@ class Medicine(models.Model):
 
     def __str__(self):
         return f'{self.title} {self.dosage}'
+
+
+class Animal(models.Model):
+    nickname = models.CharField(max_length=20)
+    breed = models.ForeignKey(Breed, on_delete=models.SET_NULL, null=True)
+    owner = models.ForeignKey(Owner, on_delete=models.SET_NULL, null=True)
+    age_years = models.DecimalField(decimal_places=2, max_digits=4)
+    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.SET_NULL, null=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True)
+    drug = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True)
+    date = models.DateField()
+
+    def __str__(self):
+        return self.nickname
